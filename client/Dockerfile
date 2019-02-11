@@ -1,7 +1,6 @@
-# Dockerfile - this is a comment. Delete me if you want.
-FROM node:10.15.1
+FROM node:latest
 COPY . /app
 WORKDIR /app
-RUN npm install -silent
+RUN npm install --silent
 
 CMD ["npm", "start"]
