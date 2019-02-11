@@ -7,7 +7,8 @@ services:
       - /redis.conf:/usr/local/etc/redis/redis.conf
     ports:
       - "6379:6379"
-  web:
+
+  server:
     build: ./server
     working_dir: /var/www/app
     ports:
@@ -16,3 +17,12 @@ services:
     - ./server:/var/www/app:rw
     depends_on:
     - redis
+
+  client:
+    build:
+      context: ./client
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
